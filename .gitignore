@@ -4,6 +4,10 @@
 # Log file
 *.log
 
+# Greenfoot files
+*.html
+logfile.txt
+
 # BlueJ files
 *.ctxt
 
