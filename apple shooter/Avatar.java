@@ -43,9 +43,42 @@ public class Avatar extends Slider
 
         if ( Gunheat==0 && Greenfoot.isKeyDown("space") == true )
         {
-            Dart jim = new Dart();
-            getWorld().addObject( jim, getX(), getY() );
-            jim.setRotation(  direction  );
+            MyWorld w = (MyWorld)getWorld();
+            
+            int x = getX() + 50;
+            int y = getY();
+            
+            if ( direction == 180 ) {
+                x = getX() - 50;
+                y = getY();
+            }
+            else if ( direction == 270 ) {
+                x = getX();
+                y = getY()-50;
+            }
+            else if ( direction == 90 ) {
+                x = getX();
+                y = getY()+50;
+            }
+            
+            if ( w.time() > 500 )
+            {
+                Dart jim = new Dart();
+                Dart jim2 = new Dart();
+                Dart jim3 = new Dart();
+                getWorld().addObject( jim, x, y );
+                getWorld().addObject( jim2, x, y );
+                getWorld().addObject( jim3, x, y );
+                jim.setRotation(  direction-10  );
+                jim2.setRotation(  direction  );
+                jim3.setRotation(  direction+10  );
+            }
+            else
+            {
+                Dart jim = new Dart();
+                getWorld().addObject( jim, x, y );
+                jim.setRotation(  direction  );
+            }
             Gunheat= 30;
 
             dartsound.play();

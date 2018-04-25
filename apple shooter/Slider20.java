@@ -50,7 +50,7 @@ public class Slider20 extends Slider
     {
 
         // if moving right and hitting east wall, set right to false.
-        if ( right == true && getX() == 599)
+        if ( right == true && getX() == getWorld().getWidth()-1)
         {
             right = false;
         }
@@ -60,7 +60,7 @@ public class Slider20 extends Slider
             right = true;
         }
         // if moving down and hitting south wall, set down to false.
-        if ( down == true && getY() == 399)
+        if ( down == true && getY() == getWorld().getHeight()-1)
         {
             down = false;
         }

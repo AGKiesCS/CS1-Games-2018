@@ -16,6 +16,8 @@ public class MyWorld extends World
 
     GreenfootSound bgmusic = new GreenfootSound("415804__sunsai__mushroom-background-music.mp3");
     int score = 0;
+    int time = 0;
+    
 
     public void started () {
         bgmusic.playLoop();
@@ -54,13 +56,22 @@ public class MyWorld extends World
     // 
     public void act()
     {
-        if( score == 100 );
+        
+        time = time+1;
+        
+        if( score == 100 )
         {
             //how do I add a background
             setBackground("tilesetOpenGameBackground.png");
             //setBackground(OpenGameBackground.jpeg);   
 
         }
+    }
+    
+    public int time()
+    {
+        return time;
+        
     }
 
     public void addBadlidder(int n)
@@ -82,8 +93,8 @@ public class MyWorld extends World
     public MyWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(600, 400, 1); 
-
+        super(800, 600, 1); 
+        setPaintOrder(Avatar.class,Dart.class);
     }
 
 }
