@@ -9,10 +9,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 public class Ball extends slider
 {  
-    GreenfootSound boop = new GreenfootSound("186669__fordps3__computer-boop.mp3");
+    GreenfootSound boop = new GreenfootSound("186669__fordps3__computer-boop.wav");
     
-    boolean right = true;
-    boolean down = true;
+    int right = 2;
+    int down = 2;
     /**
      * Act - do whatever the Ball wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -23,9 +23,10 @@ public class Ball extends slider
         bounce();
         
         // World edge is solid, ball hits world edge it bounces back
-        if(isTouching(Ball.class))
+        if(isTouching(Goal.class))
         {
-            turn(2);
+            //right = -right;
+            //down = -down;
             MyWorld w = (MyWorld) getWorld();
             w.counter();
         }
@@ -34,48 +35,32 @@ public class Ball extends slider
 
     void walk()
     {
-        // if walking down, set y cord + 1 else y cord -1
-        if(down == true)
-        {
-            slide(0,1);
-        }
-        else
-        {
-            slide (0,-1);
-        }
-        // if walking right, set x cord + 1 else x cord -1
-        if (right == true)
-        {
-            slide (2,0);
-        }
-        else
-        {
-            slide(-1,0);
-        }
+        
+            slide(right,down);
     }
 
     void bounce()
     {
         //if moving right and hitting east wall, set right to false.
-        if(right == true && getX() == 599)
+        if(right > 0 && getX() == getWorld().getWidth()-1)
         {
-            right = false;
+            right = -3 - Greenfoot.getRandomNumber(5);
          
         }
         //if moving not-right and hitting west wall, set right to true.
-        if( right == false && getX() == 0)
+        if( right < 0 && getX() == 0)
         {
-            right = true;
+            right = 3 + Greenfoot.getRandomNumber(5);
         }
         //if moving down and hitting south wall, set down to false.
-        if( down == true && getY() == 399)
+        if( down > 0 && getY() == getWorld().getHeight()-1)
         {
-            down = false;
+            down = -3 - Greenfoot.getRandomNumber(5);
         }
         //if moving not-down and hitting north wall, set down to true.if( down == false && getY() == 0)
-        if(down == false && getY() == 0)
+        if(down < 0 && getY() == 0)
         {
-            down = true;
+            down = 3 + Greenfoot.getRandomNumber(5);
         }
 
     }
