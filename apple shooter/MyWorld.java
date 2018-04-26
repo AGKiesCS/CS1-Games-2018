@@ -17,7 +17,6 @@ public class MyWorld extends World
     GreenfootSound bgmusic = new GreenfootSound("415804__sunsai__mushroom-background-music.mp3");
     int score = 0;
     int time = 0;
-    
 
     public void started () {
         bgmusic.playLoop();
@@ -38,7 +37,7 @@ public class MyWorld extends World
         if ( n < 0 ) n = -n;
         while ( n > 0 )
         {
-            int x = Greenfoot.getRandomNumber( getWidth() );
+            int x = getWidth()-1;//Greenfoot.getRandomNumber( getWidth() );
             int y = Greenfoot.getRandomNumber( getHeight() );
             addObject( new Slider20(), x, y );
             n = n - 1;
@@ -56,30 +55,39 @@ public class MyWorld extends World
     // 
     public void act()
     {
-        
+
         time = time+1;
-        
+
+        if ( getObjects(Badslidder.class).size() < 25 && Greenfoot.getRandomNumber(10)==0 ) {
+            addBadlidder(1);
+        }
+
+        if ( getObjects(Slider20.class).size() < 25 && Greenfoot.getRandomNumber(10)==0 ) {
+            addSlidder20(1);
+        }
+
         if( score == 100 )
         {
-            //how do I add a background
-            setBackground("tilesetOpenGameBackground.png");
-            //setBackground(OpenGameBackground.jpeg);   
+            
 
         }
+
+        
     }
-    
     public int time()
     {
         return time;
-        
+
     }
+
+    
 
     public void addBadlidder(int n)
     {
         if ( n < 0 ) n = -n;
         while ( n > 0 )
         {
-            int x = Greenfoot.getRandomNumber( getWidth() );
+            int x = getWidth()-1;//Greenfoot.getRandomNumber( getWidth() );Greenfoot.getRandomNumber( getWidth() );
             int y = Greenfoot.getRandomNumber( getHeight() );
             addObject( new Badslidder(), x, y );
             n = n - 1;
@@ -95,6 +103,16 @@ public class MyWorld extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(800, 600, 1); 
         setPaintOrder(Avatar.class,Dart.class);
+        prepare();
     }
 
+    /**
+     * Prepare the world for the start of the program.
+     * That is: create the initial objects and add them to the world.
+     */
+    private void prepare()
+    {
+        Avatar avatar = new Avatar();
+        addObject(avatar,67,363);
+    }
 }

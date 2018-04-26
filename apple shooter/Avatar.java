@@ -13,6 +13,7 @@ public class Avatar extends Slider
 
     int Gunheat = 0;
     int direction = 0;
+    int shootdirection = 0;
 
     double scale = 1.0;
 
@@ -35,32 +36,43 @@ public class Avatar extends Slider
         //walk();
         //bounce();
         // if its touching another thing of its kind.... spin
+        boolean shootLeft = Greenfoot.isKeyDown("a");
+        boolean shootRight = Greenfoot.isKeyDown("d");
+        boolean shootUp = Greenfoot.isKeyDown("w");
+        boolean shootDown = Greenfoot.isKeyDown("s");
+        boolean shoot = shootLeft || shootRight || shootUp || shootDown;
 
         if ( Gunheat > 0 ) 
         {
             Gunheat = Gunheat - 1;
         }
 
-        if ( Gunheat==0 && Greenfoot.isKeyDown("space") == true )
+        if ( Gunheat==0 && shoot == true )
         {
             MyWorld w = (MyWorld)getWorld();
-            
-            int x = getX() + 50;
+            int width = getImage().getWidth()/2;
+            int height = getImage().getHeight()/2;
+            int x = getX() + width;
             int y = getY();
-            
-            if ( direction == 180 ) {
-                x = getX() - 50;
+
+            shootdirection = 0;
+            if ( shootLeft ) shootdirection = 180;
+            else if ( shootUp ) shootdirection = 270;
+            else if ( shootDown ) shootdirection = 90;
+
+            if ( shootdirection == 180 ) {
+                x = getX() - width;
                 y = getY();
             }
-            else if ( direction == 270 ) {
+            else if ( shootdirection == 270 ) {
                 x = getX();
-                y = getY()-50;
+                y = getY()-height;
             }
-            else if ( direction == 90 ) {
+            else if ( shootdirection == 90 ) {
                 x = getX();
-                y = getY()+50;
+                y = getY()+height;
             }
-            
+
             if ( w.time() > 500 )
             {
                 Dart jim = new Dart();
@@ -69,22 +81,29 @@ public class Avatar extends Slider
                 getWorld().addObject( jim, x, y );
                 getWorld().addObject( jim2, x, y );
                 getWorld().addObject( jim3, x, y );
-                jim.setRotation(  direction-10  );
-                jim2.setRotation(  direction  );
-                jim3.setRotation(  direction+10  );
+                jim.setRotation(  shootdirection-10  );
+                jim2.setRotation(  shootdirection  );
+                jim3.setRotation(  shootdirection+10  );
             }
             else
             {
                 Dart jim = new Dart();
                 getWorld().addObject( jim, x, y );
-                jim.setRotation(  direction  );
+                jim.setRotation(  shootdirection  );
             }
             Gunheat= 30;
 
             dartsound.play();
         }
-        if( isTouching(Avatar.class))
+        if(scale < 1)
         {
+            scale = scale*1.0001;
+            if ( scale > 1 ) {
+                scale = 1;
+               
+                
+            }
+            updateImage();
 
         }
         if (  isTouching(Badslidder.class) == true )
@@ -92,28 +111,15 @@ public class Avatar extends Slider
             removeTouching(Badslidder.class);
             // Shrink!  // Apply powerup....
             scale = scale*0.9;
-            if ( scale < 0.25 ) {
-                scale = 0.25;
+            if ( scale < 0.15 ) {
+                scale = 0.15;
+                Greenfoot.stop();
+                
             }
             updateImage();
 
         }
-        if (isTouching(Slider20.class) == true )
-        {
-            removeTouching(Slider20.class);
-            // Grow!  // Apply powerup....
-            scale = scale*1.1;
-            
-            if ( scale > 2.5 ) {
-                scale = 2.5;
-            }
-            
-            updateImage();
 
-            MyWorld W = (MyWorld)getWorld();
-            W.counter();
-
-        }
         // how do I make a limit to the size it can grow
         // movement 
         if ( Greenfoot.isKeyDown("left") )
@@ -147,6 +153,7 @@ public class Avatar extends Slider
         setImage(i);
 
     }
+
     void walk()
     { 
         // if walking down, set y coordinate +1 

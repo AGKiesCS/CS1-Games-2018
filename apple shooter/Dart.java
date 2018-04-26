@@ -17,10 +17,21 @@ public class Dart extends Actor
 
         move(5);
         
+        if (isTouching(Slider20.class) == true )
+        {
+            removeTouching(Slider20.class);
+            
+            MyWorld W = (MyWorld)getWorld();
+            W.counter();
+
+        }
 
         if ( isTouching(Badslidder.class) == true )
         {
-            removeTouching(Badslidder.class);        
+            removeTouching(Badslidder.class);  
+            MyWorld W = (MyWorld)getWorld();
+            W.counter();
+
         }
 
         if (  isAtEdge() == true ) 
