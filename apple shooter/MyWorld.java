@@ -16,7 +16,10 @@ public class MyWorld extends World
 
     GreenfootSound bgmusic = new GreenfootSound("415804__sunsai__mushroom-background-music.mp3");
     int score = 0;
-    int time = 0;
+
+    // 60 seconds is about 3600    
+    int time = 3600;
+    int redapplecollector=0;
 
     public void started () {
         bgmusic.playLoop();
@@ -48,16 +51,26 @@ public class MyWorld extends World
     {
         score = score + 1;
 
-        showText( "the score is " + score , 100 , 100);
 
     }
 
+    
+    public void apple ()
+    {
+       redapplecollector = redapplecollector + 1;
+
+
+    }
+
+    
+    
     // 
-    public void act()
+    public void act()    
     {
 
-        time = time+1;
-
+        time = time-1;
+        showText( "you have " + (60*time/3600)+" secounds remaining" , 195, 50);
+        showText( "the score is " + score , 100 , 100);
         if ( getObjects(Badslidder.class).size() < 25 && Greenfoot.getRandomNumber(10)==0 ) {
             addBadlidder(1);
         }
@@ -68,19 +81,16 @@ public class MyWorld extends World
 
         if( score == 100 )
         {
-            
 
         }
 
-        
     }
+
     public int time()
     {
         return time;
 
     }
-
-    
 
     public void addBadlidder(int n)
     {
@@ -92,6 +102,9 @@ public class MyWorld extends World
             addObject( new Badslidder(), x, y );
             n = n - 1;
         }
+
+        
+        
     }
 
     /**

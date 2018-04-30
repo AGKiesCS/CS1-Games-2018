@@ -106,6 +106,20 @@ public class Avatar extends Slider
             updateImage();
 
         }
+        if (  isTouching(Slider20.class) == true )
+        {
+            removeTouching(Slider20.class);
+            // Shrink!  // Apply powerup....
+            scale = scale*0.9;
+            if ( scale < 0.15 ) {
+                scale = 0.15;
+                Greenfoot.stop();
+                
+            }
+            updateImage();
+
+        }
+        
         if (  isTouching(Badslidder.class) == true )
         {
             removeTouching(Badslidder.class);
