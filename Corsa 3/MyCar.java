@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (James Barham and Connor Hayes) 
  * @version (a version number or a date)
  */
-public class MyCar extends Slider
+public class MyCar extends Cars
 {
    GreenfootSound EngineStart = new GreenfootSound("CarEngineStart.mp3");
     GreenfootSound EngineRunning = new GreenfootSound("CarEngineRunning.mp3");
@@ -30,7 +30,7 @@ public class MyCar extends Slider
         
         if(Greenfoot.isKeyDown("up"))
         {
-           move (2);
+           move(2);
            EngineStart.play();
            EngineRunning.playLoop();
         } 

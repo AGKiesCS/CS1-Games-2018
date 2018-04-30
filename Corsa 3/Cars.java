@@ -22,5 +22,14 @@ public class Cars extends Actor
         
         
         //how do we make all the cars and my car start  after a countdown
-    }    
+    }
+    
+    public void move(int n) {
+        super.move(n);
+        if ( isTouching(Blocks.class) ) {
+            super.move(-n);
+        }
+    }
+    
+    
 }
