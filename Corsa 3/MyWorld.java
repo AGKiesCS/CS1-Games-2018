@@ -11,6 +11,8 @@ public class MyWorld extends World
 
     int score =  0;
 
+    GreenfootImage aimap = new GreenfootImage("map01.png");
+    
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -20,9 +22,30 @@ public class MyWorld extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(850, 550, 1); 
         //prepare();
-        prepare();
+        //prepare();
+        load("map01.png");
     }
 
+    public GreenfootImage getAIMap() {
+        return aimap;
+    }
+    
+    private void load(String map) {
+        GreenfootImage bg = new GreenfootImage(map);
+        Blocks bill = new Blocks();
+        TestBlock ted = new TestBlock();
+        int bw = bill.getImage().getWidth();
+        int bh = bill.getImage().getHeight();
+        for ( int x = bw/2; x < getWidth(); x += bw/2 ) {
+            for (int y = bh/2; y < getHeight(); y += bh/2 ) {
+                if ( bg.getColorAt(x,y).equals(Color.RED) ) {
+                    addObject(new Blocks(), x, y);
+                    //y += bh;
+                }
+            }
+        }
+    }
+    
     public void counter()
     {
         score = score+1;
