@@ -1,9 +1,12 @@
 #BlueJ class context
 comment0.target=MyWorld
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ MyWorld\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ MyWorld\ here.\r\n\ \r\n\ @author\ (Christian\ lerma)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n\ \r\n\ need\ to\ add\ a\ grid\ to\ world\ \r\n\ add\ random\ amount\ of\ enemies\ on\ the\ right\ \r\n\ add\ random\ amounts\ of\ power\ ups\r\n\ fix\ attack\ code\ so\ it\ runs\ \r\n\ add\ code\ to\ remove\ playable\ charecters\ when\ their\ HP\=0\r\n\ add\ code\ that\ give\ playable\ stats\r\n\ \r\n\ \r\n\ \r\n\ \r\n\ \r\n\ \r\n\ \r\n\ \r\n\ \r\n\ \r\n\ \r\n
 comment1.params=
 comment1.target=MyWorld()
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ MyWorld.\r\n\ \r\n
 comment2.params=
 comment2.target=void\ counter()
-numComments=3
+comment3.params=
+comment3.target=void\ addObject()
+comment3.text=\ public\ void\ act()\r\n\ \ \ \ {\r\n\r\n\ \ \ \ }\r\n\ \ \ \ //music\r\n\ \ \ \ public\ void\ started()\r\n\ \ \ \ {\r\n\ \ \ \ bgmusic.\ playloop();\r\n\ \ \ \ }\r\n\ \ \ \ public\ void\ stopped()\r\n\ \ \ \ {\r\n\ \ \ \ bgmusic.pause();\r\n}
+numComments=4
