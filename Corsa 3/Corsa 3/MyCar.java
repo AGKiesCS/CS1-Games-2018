@@ -26,7 +26,7 @@ public class MyCar extends Cars
 
         if(Greenfoot.isKeyDown("up"))
         {
-            move(2);
+            move(3);
             EngineStart.play();
             EngineRunning.playLoop();
         } 
@@ -35,7 +35,7 @@ public class MyCar extends Cars
         }
         if(Greenfoot.isKeyDown("down"))
         {
-            move (-2);
+            move (-3);
         }    
         if(Greenfoot.isKeyDown("right"))
         {
@@ -47,11 +47,6 @@ public class MyCar extends Cars
         }    
     }
 
-    public void move(int n) {
-        super.move(n);
-        if ( isTouching(AICar.class) ) {
-            super.move(-n);
-        }
-    }
+    
 }
 

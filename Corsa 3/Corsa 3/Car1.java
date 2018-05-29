@@ -8,5 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Car1 extends AICar
 {
-    
+    public Car1() {
+        super();
+        setColor(Color.BLUE);
+    }
 }
