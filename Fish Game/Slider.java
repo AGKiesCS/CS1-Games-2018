@@ -8,11 +8,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Slider extends Actor
 {
-    
-   public void slide(int x, int y)
-   {
-    setLocation(getX()+x, getY()+y  );
-   }
-    
-    
+
+    public void slide(int x, int y)
+    {
+        setLocation(getX()+x, getY()+y  );
+    }
+
 }

@@ -6,8 +6,18 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (Sean Parnell/Brandon Harris) 
  * @version (a version number or a date)
  */
-public class MyFish extends Slider
+public class MyFish extends Fish
 {
+    GreenfootSound bite = new GreenfootSound("ComputerChomp2.wav");
+    GreenfootSound eat = new GreenfootSound("PlayerChomp2.wav");
+    GreenfootSound down = new GreenfootSound("PowerDown.wav");
+    GreenfootSound up = new GreenfootSound("PowerUp.wav");
+    GreenfootImage pic;
+
+    protected void addedToWorld(World w){
+        pic = getImage();
+    }    
+
     /**
      * Act - do whatever the MyFish wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -15,44 +25,104 @@ public class MyFish extends Slider
     public void act() 
     {
 
+        int size = getImage().getWidth();
+
         if (isTouching(SmallFish.class)==true) 
-        {
+        { 
+            eat.play();
             removeTouching(SmallFish.class);
 
-            GreenfootImage Fish = getImage();
-            Fish.scale( Fish.getWidth()+5, Fish.getHeight()+5);
-            setImage(Fish);
-        }    
-        if (isTouching(LargeFish.class)==true) 
-        {
-            removeTouching(LargeFish.class);
-
-            GreenfootImage Fish = getImage();
-            Fish.scale( Fish.getWidth()+5, Fish.getHeight()+5);
+            GreenfootImage Fish = new GreenfootImage(pic);
+            Fish.scale( getImage().getWidth()+2, getImage().getHeight()+2);
             setImage(Fish);
         }  
-        if (isTouching(MediumFish.class)==true) 
-        {
-            removeTouching(MediumFish.class);
+        else if ( isTouching(MediumFish.class)==true ) 
+        { 
+            if ( size >= 120 ) {
+                eat.play();
+                removeTouching(MediumFish.class);
 
-            GreenfootImage Fish = getImage();
-            Fish.scale( Fish.getWidth()+5, Fish.getHeight()+5);
-            setImage(Fish);
-        }  
-        if (isTouching(PowerUp.class)==true)
+                GreenfootImage Fish = new GreenfootImage(pic);
+                Fish.scale( getImage().getWidth()+5, getImage().getHeight()+5);
+                setImage(Fish);
+            }
+            else {
+                bite.play();
+                
+                GameOver gameover = new GameOver();
+                getWorld().addObject(gameover, 500, 300);
+
+                GreenfootImage bg = new GreenfootImage(500,500);
+                bg.setColor(Color.BLACK);
+                bg.fill();
+                getWorld().setBackground(bg);
+                getWorld().removeObject(this);
+                Greenfoot.stop();
+                return; 
+
+            }
+        } 
+        else if ( isTouching(LargeFish.class)==true) 
         {
-          removeTouching(PowerUp.class);
+            if (size >= 180) {
+                eat.play();
+                removeTouching(LargeFish.class);
+
+                GreenfootImage Fish = new GreenfootImage(pic);
+                Fish.scale( getImage().getWidth()+8, getImage().getHeight()+8);
+                setImage(Fish);
+            } 
+            else {
+                bite.play();
+
+                GameOver gameover = new GameOver();
+                getWorld().addObject(gameover, 500, 300);
+
+                GreenfootImage bg = new GreenfootImage(500,500);
+                bg.setColor(Color.BLACK);
+                bg.fill();
+                getWorld().setBackground(bg);
+                getWorld().removeObject(this);
+                Greenfoot.stop();
+                return;
+            }
         }
+        if (isTouching(PowerDown.class)==true) 
+        { 
+            down.play();
+            removeTouching(PowerDown.class);
+            //MyFish myfish = new MyFish();
+            //getWorld().addObject(myfish, 507, 320);
+            //getWorld().removeObject(this); 
+            //Greenfoot.start();
+            GreenfootImage Fish = new GreenfootImage(pic);
+            //Fish.scale( getImage().getWidth()-20, getImage().getHeight()-20);
+            setImage(Fish);
+            return;
+        }  
         
+        //int timer = 1;
+        
+        
+        if (isTouching(PowerUp.class))
+        {
+            
+            up.play();
+            GreenfootImage Fish = new GreenfootImage(pic);
+            Fish.scale( getImage().getWidth()+50, getImage().getHeight()+50);
+            setImage(Fish);removeTouching(PowerUp.class);
+            
+        }
+        //else if (isTouching(PowerUp.class)==true &&
         if (Greenfoot.isKeyDown("left") )
         {
             //slide(-2,0);    t
-            turn (-2);
+            turn (-4);
         }
         if (Greenfoot.isKeyDown("right") )
         {
             //slide(2,0);   
-            turn(2);
+            turn(4);
         }
         if (Greenfoot.isKeyDown("up") )
         {
@@ -66,17 +136,17 @@ public class MyFish extends Slider
         }
         if ( getX() == 0)
         {
-            setLocation(599,getY());
+            setLocation(999,getY());
         }
-        if (getX() == 599)
+        else if (getX() == 999)
         {
             setLocation(0,getY());
         }
-         if ( getY() == 0)
+        if ( getY() == 0)
         {
-            setLocation(getX(),399);
+            setLocation(getX(),599);
         }
-        if ( getY() == 399)
+        else if ( getY() == 599)
         {
             setLocation(getX(),0);
         }
