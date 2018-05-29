@@ -8,8 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Slider20 extends Slider
 {
-    boolean right = true;
-    boolean down = true;
+    boolean right = Greenfoot.getRandomNumber(2) == 0;
+    boolean down = Greenfoot.getRandomNumber(2) == 0 ; 
 
     /**
      * Act - do whatever the Slider20 wants to do. This method is called whenever
@@ -71,14 +71,11 @@ public class Slider20 extends Slider
         }
 
         
-        
-        
         // Add your action code here.
         // jump when you press the up arrow key
         // move down when you press the down arrow key
         //move left when you press the left arrow key
         // move right when you press the right arrow key
 
-            
     }
 }

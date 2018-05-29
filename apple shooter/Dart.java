@@ -23,7 +23,8 @@ public class Dart extends Actor
             
             MyWorld W = (MyWorld)getWorld();
             W.counter();
-
+            getWorld().removeObject(this);
+            return;
         }
 
         if ( isTouching(Badslidder.class) == true )
@@ -31,7 +32,8 @@ public class Dart extends Actor
             removeTouching(Badslidder.class);  
             MyWorld W = (MyWorld)getWorld();
             W.counter();
-
+            getWorld().removeObject(this);
+            return;
         }
 
         if (  isAtEdge() == true ) 

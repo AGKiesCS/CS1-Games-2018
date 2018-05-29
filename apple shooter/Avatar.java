@@ -15,7 +15,7 @@ public class Avatar extends Slider
     int direction = 0;
     int shootdirection = 0;
 
-    double scale = 1.0;
+    public static double  scale = 1.0;
 
     GreenfootImage pic;
 
@@ -24,6 +24,7 @@ public class Avatar extends Slider
 
     public Avatar() {
         pic = new GreenfootImage( getImage() );
+        scale = 1.0;
     }
 
     /**
@@ -73,7 +74,8 @@ public class Avatar extends Slider
                 y = getY()+height;
             }
 
-            if ( w.time() > 500 )
+            int apples = ( (MyWorld)getWorld() ).applec();
+            if (apples >= 21)
             {
                 Dart jim = new Dart();
                 Dart jim2 = new Dart();
@@ -97,11 +99,10 @@ public class Avatar extends Slider
         }
         if(scale < 1)
         {
-            scale = scale*1.0001;
+            scale = scale*1.0005;
             if ( scale > 1 ) {
                 scale = 1;
-               
-                
+
             }
             updateImage();
 
@@ -109,17 +110,11 @@ public class Avatar extends Slider
         if (  isTouching(Slider20.class) == true )
         {
             removeTouching(Slider20.class);
-            // Shrink!  // Apply powerup....
-            scale = scale*0.9;
-            if ( scale < 0.15 ) {
-                scale = 0.15;
-                Greenfoot.stop();
-                
-            }
-            updateImage();
+            MyWorld W = (MyWorld)getWorld();
+            W.apple();            
 
         }
-        
+
         if (  isTouching(Badslidder.class) == true )
         {
             removeTouching(Badslidder.class);
@@ -128,7 +123,17 @@ public class Avatar extends Slider
             if ( scale < 0.15 ) {
                 scale = 0.15;
                 Greenfoot.stop();
-                
+                getWorld().showText(" Game over", getWorld(). getWidth()/2, getWorld().getHeight()/2);
+                ((MyWorld)getWorld()).clearscreen();
+                //getWorld().removeObjects(getWorld().getObjects(Actor.class));
+
+                getWorld().showText( "" , 100 , 100);
+                getWorld().showText( ""  , 195, 55);
+                getWorld().showText( "" , 139, 25);
+                getWorld().showText( "" , getWorld().getWidth()/2, getWorld().getHeight()-15);
+
+    
+
             }
             updateImage();
 

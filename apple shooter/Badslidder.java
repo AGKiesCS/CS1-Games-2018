@@ -8,9 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Badslidder extends Slider
 {
-    boolean right = true;
-    boolean down = true;
-
+    boolean right = Greenfoot.getRandomNumber(2) == 0;
+    boolean down = Greenfoot.getRandomNumber(2) == 0 ;
     /**
      * Act - do whatever the Slider20 wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -76,6 +75,5 @@ public class Badslidder extends Slider
         //move left when you press the left arrow key
         // move right when you press the right arrow key
 
-            
     }
 }
