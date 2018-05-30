@@ -11,6 +11,9 @@ public class MyCar extends Cars
     GreenfootSound EngineStart = new GreenfootSound("CarEngineStart.mp3");
     GreenfootSound EngineRunning = new GreenfootSound("CarEngineRunning.mp3");
 
+    int speed = 4;
+    int turn = 4;
+    
     /**
      * Act - do whatever the MyCar wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -26,7 +29,7 @@ public class MyCar extends Cars
 
         if(Greenfoot.isKeyDown("up"))
         {
-            move(3);
+            move(speed);
             EngineStart.play();
             EngineRunning.playLoop();
         } 
@@ -35,15 +38,15 @@ public class MyCar extends Cars
         }
         if(Greenfoot.isKeyDown("down"))
         {
-            move (-3);
+            move (-speed);
         }    
         if(Greenfoot.isKeyDown("right"))
         {
-            turn(3);
+            turn(turn);
         }    
         if(Greenfoot.isKeyDown("left"))
         {
-            turn(-3);
+            turn(-turn);
         }    
     }
 

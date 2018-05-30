@@ -16,9 +16,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MyWorld extends World
 {
+    int startCoins = 500;
+    int startGuards = 25;
+    
+    
     int score = 0;
-	GreenfootSound bgmusic = new GreenfootSound("beatsdiscaunted.mp3");
-	// How do we scale the maze to fit the world's borders?
+    GreenfootSound bgmusic = new GreenfootSound("beatsdiscaunted.mp3");
+    // How do we scale the maze to fit the world's borders?
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -27,76 +31,73 @@ public class MyWorld extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 600, 1); 
-        prepare();
+        showText ( "The score is " + score , getWidth()/2, 5);
+        Billy billy = new Billy();
+        addObject(billy,22,18);
+        addGold(startCoins);
+        addGuard(startGuards);
     }
 
-	public void started() 
-	{
-		bgmusic.playLoop();
-	}
-	
-	public void stopped()
-	{
-		bgmusic.stop();
-	}
-	
-    public void counter ()
+    public void started() 
+    {
+        bgmusic.playLoop();
+    }
+
+    public void stopped()
+    {
+        bgmusic.stop();
+    }
+
+    public void counter()
     {
         score = score + 1;
-
-        showText ( "The score is " + score , 100, 100);
-
+        showText ( "The score is " + score , getWidth()/2, 5);
     }
-    
-    
-    // how do we keep adding score after we get coins from a chest.
-    /**
-     * Prepare the world for the start of the program.
-     * That is: create the initial objects and add them to the world.
-     */
-    private void prepare()
+
+    public void gameOver()
     {
-        Billy billy = new Billy();
-        addObject(billy,215,174);
-        Gold gold = new Gold();
-        addObject(gold,504,130);
-        gold.act();
-        gold.setLocation(504,130);
-        gold.setLocation(504,130);
-        gold.setLocation(504,130);
-        gold.setLocation(504,130);
-        gold.setLocation(504,130);
-        gold.setLocation(504,130);
-        gold.setLocation(504,130);
-        gold.setLocation(504,130);
-        gold.setLocation(504,130);
-        gold.setLocation(504,130);
-        gold.setLocation(504,130);
-        gold.setLocation(504,130);
-        gold.setLocation(504,130);
-        gold.setLocation(504,130);
-        gold.setLocation(504,130);
-        gold.setLocation(504,130);
-        gold.setLocation(504,130);
-        gold.setLocation(504,130);
-        gold.setLocation(504,130);
-        gold.setLocation(504,130);
-        gold.setLocation(504,130);
-        gold.setLocation(504,130);
-        gold.setLocation(504,130);
-        gold.setLocation(504,130);
-        gold.setLocation(504,130);
-        gold.setLocation(504,130);
-        gold.setLocation(504,130);
-        gold.setLocation(504,130);
-        gold.setLocation(504,130);
-        gold.setLocation(504,130);
-        gold.setLocation(504,130);
-        gold.setLocation(504,130);
-        removeObject(gold);
-        removeObject(billy);
-        Gold gold2 = new Gold();
-        addObject(gold2,263,143);
-        removeObject(gold2);
+        Greenfoot.stop();
+        for ( int x = 100; x <= 500; x += 125 ) {
+            for ( int y = 100; y <= 500; y += 50 ) {
+                showText ( "GAME OVER", x, y);
+            }
+        }
     }
+
+    public void addGuard(int n) 
+    {
+        for ( int i = 0; i < n; i++ ) addGuard();
+    }
+
+    public void addGuard() 
+    {
+        int delta = 150;
+        int x = Greenfoot.getRandomNumber(getWidth());
+        int y = Greenfoot.getRandomNumber(getHeight());
+        GreenfootImage bg = getBackground();
+        while ( (x <= delta && y <= delta) || bg.getColorAt(x,y).equals(Color.BLACK) ) {
+            x = Greenfoot.getRandomNumber(getWidth());
+            y = Greenfoot.getRandomNumber(getHeight());
+        }
+        addObject(new Guard(), x, y);
+    }
+
+    public void addGold(int n) 
+    {
+        for ( int i = 0; i < n; i++ ) addGold();
+    }
+
+    public void addGold() 
+    {
+        int x = Greenfoot.getRandomNumber(getWidth());
+        int y = Greenfoot.getRandomNumber(getHeight());
+        GreenfootImage bg = getBackground();
+        while ( bg.getColorAt(x,y).equals(Color.BLACK) ) {
+            x = Greenfoot.getRandomNumber(getWidth());
+            y = Greenfoot.getRandomNumber(getHeight());
+        }
+        addObject(new Gold(), x, y);
+    }
+
+    
 }

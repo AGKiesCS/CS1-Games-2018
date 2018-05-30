@@ -8,6 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Billy extends MazeSlider
 {
+    int speed = 2;
+    
     /**
      * Act - do whatever the Billy wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -16,25 +18,34 @@ public class Billy extends MazeSlider
     {
         //How to make Billy stop at borders?
         // When actor presses right arrow, move forward
-        if ( Greenfoot.isKeyDown("left"))
+        boolean L = Greenfoot.isKeyDown("left");
+        boolean R = Greenfoot.isKeyDown("right");
+        boolean U = Greenfoot.isKeyDown("up");
+        boolean D = Greenfoot.isKeyDown("down");
+        
+        boolean move = L || R || U || D;
+        if ( move == true ) 
         {
-           slide (-2,0); 
+            int dx = 0;
+            int dy = 0;
+            if ( L && !R ) dx = -speed;
+            else if ( R && !L ) dx = speed;
+            if ( U && !D ) dy = -speed;
+            else if ( D && !U ) dy = speed;
+            slide(dx,dy);
         }
-        // When actor presses left arrow, move backward
-         if ( Greenfoot.isKeyDown("right"))
+        
+        if ( isTouching (Gold.class)==true )
         {
-           slide (2,0); 
+            removeTouching(Gold.class);
+            ((MyWorld)getWorld()).counter();
         }
-        //When actor presses right arrow, move right
-         if ( Greenfoot.isKeyDown("up"))
+        
+        if ( isTouching (Guard.class)==true )
         {
-           slide (0,-2); 
+            ((MyWorld)getWorld()).gameOver();
         }
-        //When actor presses left arrow, move left
-        if ( Greenfoot.isKeyDown("down"))
-        {
-           slide (0,2);
-        }
+        
         
         /*
         if (isTouching (Billy.class)==true)

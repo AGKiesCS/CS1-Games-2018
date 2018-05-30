@@ -14,7 +14,6 @@ public class MyWorld extends World
 {
 
     int score =  0;
-
     GreenfootImage aimap = new GreenfootImage("Map.png");
 
     /**

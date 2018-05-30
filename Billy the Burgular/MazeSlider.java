@@ -9,12 +9,21 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class MazeSlider extends Slider
 {
     public void slide (int x, int y) {
-        int bx = getX();
-        int by = getY();
-        super.slide(x , y);
+        //setLocation(getX()+x , getY()+y);
+        int X = getX();
+        int Y = getY();
+        int dX = X + x;
+        int dY = Y + y;
+        //super.slide(x , y);
         GreenfootImage bg = getWorld().getBackground();
-        if ( bg.getColorAt( getX(), getY() ).equals(Color.BLACK) ) {
-            setLocation(bx,by);
+        if ( !bg.getColorAt( dX, dY ).equals(Color.BLACK) ) {
+            setLocation(dX,dY);
+        }
+        else if ( !bg.getColorAt( dX, Y ).equals(Color.BLACK) ) {
+            setLocation(dX,Y);
+        }
+        else if ( !bg.getColorAt( X, dY ).equals(Color.BLACK) ) {
+            setLocation(X,dY);
         }
     }
 }

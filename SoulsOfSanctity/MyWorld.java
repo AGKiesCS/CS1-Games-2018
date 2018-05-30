@@ -12,7 +12,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * fix attack code so it runs 
  * add code to remove playable charecters when their HP=0
  * add code that give playable stats
- * fix music code
+ * DONE fix music code
  * 
  * 
  * 
@@ -28,7 +28,7 @@ public class MyWorld extends World
 {
 
     int score=0;
-    Greenfootsounds bgmusic = new GreenfootSound ("LukHash_THE_OTHER_SIDE.mp3");
+    GreenfootSound bgmusic = new GreenfootSound("LukHash_THE_OTHER_SIDE.mp3");
     /**
      * Constructor for objects of class MyWorld.
      * 
