@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class MyWorld extends World
 {
     int score = 0;
-    GreenfootSound song = new GreenfootSound("ASliceOfTime2.wav"); 
+    GreenfootSound song = new GreenfootSound("ASliceOfTime.mp3"); 
     //int size = getImage().getWidth();
     public void counter()
     {
@@ -29,8 +29,16 @@ public class MyWorld extends World
 
         prepare();
     }
+
+    public void started() 
+	{
+		song.playLoop();
+	}
     
-    
+    public void stopped() 
+	{
+		song.stop();
+	}
     
     
     public void act()

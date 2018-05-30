@@ -28,7 +28,7 @@ public class MyWorld extends World
 {
 
     int score=0;
-    //Greenfootsounds bgmusic = new GreenfootSound ("");
+    Greenfootsounds bgmusic = new GreenfootSound ("LukHash_THE_OTHER_SIDE.mp3");
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -50,15 +50,15 @@ public class MyWorld extends World
 
     }
     //music
-    public void started()
-    {
-        bgmusic. playloop("LukHash_-_THE_OTHER_SIDE.mp3");
-    }
-
-    public void stopped()
-    {
-        bgmusic.pause("LukHash_-_THE_OTHER_SIDE.mp3");
-    }
+    public void started() 
+	{
+		bgmusic.playLoop();
+	}
+	
+	public void stopped()
+	{
+		bgmusic.pause();
+	}
 
     public void addObject()
     {

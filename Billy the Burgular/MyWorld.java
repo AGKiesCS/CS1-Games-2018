@@ -17,8 +17,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class MyWorld extends World
 {
     int score = 0;
-GreenfootSound bgmusic = new GreenfootSound("");
-// How do we scale the maze to fit the world's borders?
+	GreenfootSound bgmusic = new GreenfootSound("beatsdiscaunted.mp3");
+	// How do we scale the maze to fit the world's borders?
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -30,6 +30,16 @@ GreenfootSound bgmusic = new GreenfootSound("");
         prepare();
     }
 
+	public void started() 
+	{
+		bgmusic.playLoop();
+	}
+	
+	public void stopped()
+	{
+		bgmusic.stop();
+	}
+	
     public void counter ()
     {
         score = score + 1;
