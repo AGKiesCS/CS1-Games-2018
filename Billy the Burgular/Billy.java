@@ -41,9 +41,15 @@ public class Billy extends MazeSlider
             ((MyWorld)getWorld()).counter();
         }
         
-        if ( isTouching (Guard.class)==true )
+        Actor guard = getOneIntersectingObject(Guard.class);        
+        if ( guard != null )
         {
-            ((MyWorld)getWorld()).gameOver();
+            MyWorld w = (MyWorld)getWorld();
+            if ( w.noWall(this,guard) )
+            {
+                w.gameOver();
+                return;
+            }
         }
         
         

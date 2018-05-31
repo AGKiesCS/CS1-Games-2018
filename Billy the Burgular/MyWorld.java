@@ -64,6 +64,15 @@ public class MyWorld extends World
         }
     }
 
+    public boolean noWall(Actor a1, Actor a2)
+    {
+        // No wall between these two actors?
+        GreenfootImage bg = getBackground();
+        int x = (a1.getX()+a2.getX())/2;
+        int y = (a1.getY()+a2.getY())/2;
+        return !bg.getColorAt(x,y).equals(Color.BLACK);
+    }
+    
     public void addGuard(int n) 
     {
         for ( int i = 0; i < n; i++ ) addGuard();
