@@ -8,6 +8,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class American extends Slider
 {
+    int shotHeat = 15;
+    int gunheat = 0;
+    
+    
     /**
      * Act - do whatever the American wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -34,24 +38,17 @@ public class American extends Slider
         {
            slide (0,2);
         }
-        if ( Greenfoot.isKeyDown("space"))
+        /*int shotHeat = 5;
+         * int gunheat = 0;*/
+        if ( gunheat > 0 ) 
         {
-            
+            gunheat = gunheat - 1;
         }
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        if (Greenfoot.isKeyDown("space") )
+        if ( gunheat == 0 && Greenfoot.isKeyDown("space") )
         {
-          getWorld() .addObject(new Missile(), getX(), getY()-40) ;
+          getWorld().addObject(new Missile(), getX()-20, getY());
+          gunheat = shotHeat;
         }
     }    
 }
