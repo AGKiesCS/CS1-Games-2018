@@ -9,6 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Korea extends Slider
 {
     
+    boolean up= true;
     
     
     /**
@@ -20,13 +21,23 @@ public class Korea extends Slider
         
         
        
-        slide(1,0);
-        
-        if (isAtEdge()== true){
-            getWorld().removeObject(this);
-            return;
+        if(up==true) {
+            slide(0,-1);
+            
+        }
+        else{
+            slide(0,1);
+            
         }
         
+        if (isAtEdge()== true){
+            up = !up;
+            
+        }
+        if (isTouching(American.class)== true)
+        {
+          removeTouching(American.class);
+        }
         
         
     }    

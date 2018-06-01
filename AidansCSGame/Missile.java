@@ -18,20 +18,13 @@ public class Missile extends Actor
         if (isTouching(Korea.class)== true)
         {
           removeTouching(Korea.class);
-          getWorld().removeObject(this);
-            return;
         }
-        move(-4);
+        move(-10);
         if (isTouching(Missle.class)== true)
         {
           removeTouching(Missle.class);
-          getWorld().removeObject(this);
-            return;
         }
-        if(isAtEdge()== true){
-            getWorld().removeObject(this);
-            return;           
-        }
+        
       
     }    
 }
