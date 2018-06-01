@@ -1,0 +1,31 @@
+<?xml version="1.0" standalone="no" ?>
+<!DOCTYPE project PUBLIC "-//audacityproject-1.3.0//DTD//EN" "http://audacity.sourceforge.net/xml/audacityproject-1.3.0.dtd" >
+<project xmlns="http://audacity.sourceforge.net/xml/" projname="56579__atomwrath__fireworks-3bursts-sizzle_data" version="1.3.0" audacityversion="2.0.5" sel0="0.0256207394" sel1="0.0256207394" vpos="0" h="0.0000000000" zoom="195.1543989124" rate="44100.0">
+	<tags/>
+	<wavetrack name="56579__atomwrath__fireworks-3bursts-sizzle" channel="0" linked="1" mute="0" solo="0" height="150" minimized="0" isSelected="1" rate="44100" gain="1.0" pan="0.0">
+		<waveclip offset="0.00000000">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="102140">
+				<waveblock start="0">
+					<simpleblockfile filename="e0000793.au" len="1130" min="-0.008447" max="0.006865" rms="0.0005"/>
+				</waveblock>
+				<waveblock start="1130">
+					<simpleblockfile filename="e0000b25.au" len="101010" min="-0.93169" max="0.909954" rms="0.051526"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="56579__atomwrath__fireworks-3bursts-sizzle" channel="1" linked="0" mute="0" solo="0" height="150" minimized="0" isSelected="1" rate="44100" gain="1.0" pan="0.0">
+		<waveclip offset="0.00000000">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="102140">
+				<waveblock start="0">
+					<simpleblockfile filename="e0000ea4.au" len="1130" min="-0.010017" max="0.005892" rms="0.000542"/>
+				</waveblock>
+				<waveblock start="1130">
+					<simpleblockfile filename="e0000f8c.au" len="101010" min="-0.93169" max="0.717852" rms="0.045545"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+</project>

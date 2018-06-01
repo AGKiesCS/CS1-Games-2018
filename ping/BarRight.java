@@ -17,11 +17,11 @@ public class BarRight extends Bar
         // Add your action code here.
         if(Greenfoot.isKeyDown("Up"))
         {
-            slide(0,-2);
+            slide(0,-3);
         }
         if(Greenfoot.isKeyDown("Down"))
         {
-            slide(0,2);
+            slide(0,3);
         }  
     }
 }

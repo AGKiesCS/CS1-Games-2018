@@ -23,12 +23,24 @@ public class Ball extends slider
         bounce();
         
         // World edge is solid, ball hits world edge it bounces back
-        if(isTouching(Goal.class))
+        if(isTouching(GoalLeft.class))
         {
             //right = -right;
             //down = -down;
             MyWorld w = (MyWorld) getWorld();
-            w.counter();
+            w.counterRed();
+        }
+        if(isTouching(GoalRight.class))
+        {
+            //right = -right;
+            //down = -down;
+            MyWorld w = (MyWorld) getWorld();
+            w.counterBlue();
+        }
+        if(isTouching(BarRight.class) || isTouching(BarLeft.class) )
+        {
+            right = -right;
+            //playGreenfootSound boop;
         }
        
     }
@@ -44,23 +56,23 @@ public class Ball extends slider
         //if moving right and hitting east wall, set right to false.
         if(right > 0 && getX() == getWorld().getWidth()-1)
         {
-            right = -3 - Greenfoot.getRandomNumber(5);
+            right = -3; //- Greenfoot.getRandomNumber(5);
          
         }
         //if moving not-right and hitting west wall, set right to true.
         if( right < 0 && getX() == 0)
         {
-            right = 3 + Greenfoot.getRandomNumber(5);
+            right = 3; //+ Greenfoot.getRandomNumber(5);
         }
         //if moving down and hitting south wall, set down to false.
         if( down > 0 && getY() == getWorld().getHeight()-1)
         {
-            down = -3 - Greenfoot.getRandomNumber(5);
+            down = - 3; //- Greenfoot.getRandomNumber(5);
         }
         //if moving not-down and hitting north wall, set down to true.if( down == false && getY() == 0)
         if(down < 0 && getY() == 0)
         {
-            down = 3 + Greenfoot.getRandomNumber(5);
+            down = 3; // + Greenfoot.getRandomNumber(5);
         }
 
     }
